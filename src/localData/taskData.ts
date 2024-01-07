@@ -1,4 +1,4 @@
-import { Task } from "../../task/domain/interfaces/task";
+import { Task } from "../task/domain/interfaces/task";
 
 export const tasksLocalData: Task[] = [
   {

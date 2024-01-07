@@ -1,5 +1,9 @@
+import { MySQLConnection } from "../../mySql/application/mysqlConnection";
+import { tasksLocalData } from "../../localData/taskData";
+
 import { LocalDataRepository } from "../application/DbRepository/localData.repository";
 import { MySQLRepository } from "../application/DbRepository/mysql.repository";
+
 import {
   GetTasksService,
   GetTaskByIdService,
@@ -15,9 +19,13 @@ import {
   PutTaskController,
 } from "./controllers";
 
+//Se inicializa db
+const dbConnection = new MySQLConnection();
+dbConnection.connect();
+
 //Se inyecta dependencia (base de datos)
-const localDataRepository = new LocalDataRepository();
-const mysqlRepository = new MySQLRepository();
+const localDataRepository = new LocalDataRepository(tasksLocalData);
+const mysqlRepository = new MySQLRepository(dbConnection);
 
 //se inyecta la base de datos a los servicios
 const getTasksService = new GetTasksService(mysqlRepository);
