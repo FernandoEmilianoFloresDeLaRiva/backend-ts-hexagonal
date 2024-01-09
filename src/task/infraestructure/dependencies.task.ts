@@ -1,4 +1,4 @@
-import { MySQLConnection } from "../../mySql/application/mysqlConnection";
+import { MySQLConnection } from "../../shared/mySql/application/mysqlConnection";
 import { tasksLocalData } from "../../localData/taskData";
 
 import { LocalDataRepository } from "../application/DbRepository/localData.repository";
@@ -21,7 +21,6 @@ import {
 
 //Se inicializa db
 const dbConnection = new MySQLConnection();
-dbConnection.connect();
 
 //Se inyecta dependencia (base de datos)
 const localDataRepository = new LocalDataRepository(tasksLocalData);

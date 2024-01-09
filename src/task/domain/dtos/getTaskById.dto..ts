@@ -1,4 +1,4 @@
-import { TaskResponse, Task } from "../interfaces";
+import { TaskResponse, Task } from "../entities";
 
 export function getTaskByIdDto(task: Task): TaskResponse {
   return {

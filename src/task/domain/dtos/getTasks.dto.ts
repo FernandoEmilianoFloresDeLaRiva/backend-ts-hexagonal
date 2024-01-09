@@ -1,6 +1,5 @@
-import { Task } from "../interfaces/task";
+import { Task, TaskResponse } from "../entities";
 import { getTaskByIdDto } from "./getTaskById.dto.";
-import { TaskResponse } from "../interfaces";
 
 export function getTasksDto(tasks: Task[]): TaskResponse[] {
   const formatedtasks: TaskResponse[] = [];

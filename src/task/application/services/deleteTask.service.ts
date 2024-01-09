@@ -1,16 +1,15 @@
-import { TaskResponse } from "../../domain/interfaces";
 import { TaskRepository } from "../../domain/repository/taskRepository";
 
 export class DeleteTaskService {
   constructor(private taskRepository: TaskRepository) {}
-  async run(taskId: number) : Promise<TaskResponse[] | string> {
+  async run(taskId: number) : Promise<boolean> {
     try {
       const findTask = await this.taskRepository.getTaskById(taskId);
       if (findTask) {
-        const response = await this.taskRepository.deleteTask(taskId);
-        return response;
+        await this.taskRepository.deleteTask(taskId);
+        return true;
       }
-      return "Task not found";
+      return false;
     } catch (err: any) {
       console.log(err);
       throw new Error(err);

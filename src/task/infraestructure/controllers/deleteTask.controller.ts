@@ -6,7 +6,8 @@ export class DeleteTaskController {
   async run(req: Request, res: Response) {
     const { id } = req.params;
     const parseId = parseInt(id);
-    const response = await this.deleteTaskService.run(parseId);
-    return res.status(200).json(response);
+    const handleError = await this.deleteTaskService.run(parseId)
+    if(handleError === true) return res.status(200).json("Delete successfully");
+    return res.status(404).json("There was an error deleting the task");
   }
 }
