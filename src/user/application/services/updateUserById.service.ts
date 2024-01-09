@@ -2,7 +2,7 @@ import { User, UserResponse } from "../../domain/entities";
 import { UserRepository } from "../../domain/repository/userRepository";
 import bcrypt from "bcrypt";
 
-export class UpdateUserById {
+export class UpdateUserByIdService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async run(user: User, id_user: number): Promise<UserResponse> {

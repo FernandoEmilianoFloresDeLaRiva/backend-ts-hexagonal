@@ -2,7 +2,7 @@ import { Task } from "../../domain/entities";
 import { TaskRepository } from "../../domain/repository/taskRepository";
 import { mySqlConnectionRepository } from "../../../shared/mySql/domain/repository/mySqlConnectionRepository";
 
-export class MySQLRepository implements TaskRepository {
+export class MySQLRepositoryTask implements TaskRepository {
   private db: mySqlConnectionRepository;
 
   constructor(db: mySqlConnectionRepository) {

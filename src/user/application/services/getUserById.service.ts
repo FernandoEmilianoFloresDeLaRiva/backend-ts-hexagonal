@@ -3,7 +3,7 @@ import { UserResponse } from "../../domain/entities";
 import { UserRepository } from "../../domain/repository/userRepository";
 
 
-export class GetUserById {
+export class GetUserByIdService {
     constructor(private readonly userRepository: UserRepository){}
     async run (id_user : number) : Promise<UserResponse>{
         try{

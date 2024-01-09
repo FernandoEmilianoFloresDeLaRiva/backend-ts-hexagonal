@@ -2,7 +2,7 @@ import { mySqlConnectionRepository } from "../../../shared/mySql/domain/reposito
 import { User } from "../../domain/entities";
 import { UserRepository } from "../../domain/repository/userRepository";
 
-export class MySqlRespository implements UserRepository {
+export class MySqlRepositoryUser implements UserRepository {
   private db: mySqlConnectionRepository;
   constructor(db: mySqlConnectionRepository) {
     this.db = db;

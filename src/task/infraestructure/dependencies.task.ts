@@ -2,7 +2,7 @@ import { MySQLConnection } from "../../shared/mySql/application/mysqlConnection"
 import { tasksLocalData } from "../../localData/taskData";
 
 import { LocalDataRepository } from "../application/DbRepository/localData.repository";
-import { MySQLRepository } from "../application/DbRepository/mysql.repository";
+import { MySQLRepositoryTask } from "../application/DbRepository/mysql.repository";
 
 import {
   GetTasksService,
@@ -24,7 +24,7 @@ const dbConnection = new MySQLConnection();
 
 //Se inyecta dependencia (base de datos)
 const localDataRepository = new LocalDataRepository(tasksLocalData);
-const mysqlRepository = new MySQLRepository(dbConnection);
+const mysqlRepository = new MySQLRepositoryTask(dbConnection);
 
 //se inyecta la base de datos a los servicios
 const getTasksService = new GetTasksService(mysqlRepository);
