@@ -1,4 +1,4 @@
-import { Task } from "../task/domain/entities/task";
+import { Task } from "../../task/domain/entities/task";
 
 export const tasksLocalData: Task[] = [
   {

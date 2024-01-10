@@ -1,4 +1,4 @@
-export * from './deleteUserById.service';
+export * from './deleteUserByEmail.service';
 export * from './getAllUsers.service';
-export * from './getUserById.service';
-export * from './updateUserById.service';
+export * from './getUserByEmail.service';
+export * from './updateUserByEmail.service';

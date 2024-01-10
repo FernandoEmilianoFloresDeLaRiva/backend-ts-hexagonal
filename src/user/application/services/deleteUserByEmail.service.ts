@@ -1,12 +1,12 @@
 import { UserRepository } from "../../domain/repository/userRepository";
 
-export class DeleteUserByIdService {
+export class DeleteUserByEmailService {
   constructor(private readonly userRepository: UserRepository) {}
-  async run(id_user: number): Promise<boolean> {
+  async run(email : string): Promise<boolean> {
     try {
-      const user = await this.userRepository.getUsersById(id_user);
+      const user = await this.userRepository.getUserByEmail(email);
       if (user) {
-        await this.userRepository.deleteUserById(id_user);
+        await this.userRepository.deleteUserByEmail(email);
         return true;
       }
       return false;

@@ -6,7 +6,6 @@ export class RegisterAuthController {
   async run(req: Request, res: Response) {
     try {
       const user = req.body;
-      
       const jwtResult = await this.registerAuthService.run(user);
       return res.status(200).json(jwtResult);
     } catch (err: any) {

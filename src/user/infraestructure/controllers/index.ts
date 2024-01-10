@@ -1,4 +1,4 @@
-export * from './deleteUserById.controller';
+export * from './deleteUserByEmail.controller';
 export * from './getAllUsers.controller';
-export * from './getUserById.controller';
-export * from './updateUserById.controller';
+export * from './getUserByEmail.controller';
+export * from './updateUserByEmail.controller';

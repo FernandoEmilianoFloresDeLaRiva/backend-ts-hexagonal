@@ -1,17 +1,30 @@
 import { Router } from "express";
 import {
-  deleteUserByIdController,
+  deleteUserByEmailController,
   getAllUsersController,
-  getUserByIdController,
-  updateUserByIdController,
+  getUserByEmailController,
+  updateUserByEmailController,
 } from "./dependencies.user";
+import { verifyJwt } from "../../auth/application/middlewares/jwt.middleware";
 
 const userRouter = Router();
 
 userRouter
-  .get("/", getAllUsersController.run.bind(getAllUsersController))
-  .get("/:id", getUserByIdController.run.bind(getUserByIdController))
-  .delete("/:id", deleteUserByIdController.run.bind(deleteUserByIdController))
-  .put("/:id", updateUserByIdController.run.bind(updateUserByIdController));
+  .get("/", verifyJwt, getAllUsersController.run.bind(getAllUsersController))
+  .get(
+    "/:email",
+    verifyJwt,
+    getUserByEmailController.run.bind(getUserByEmailController)
+  )
+  .delete(
+    "/:email",
+    verifyJwt,
+    deleteUserByEmailController.run.bind(deleteUserByEmailController)
+  )
+  .put(
+    "/:email",
+    verifyJwt,
+    updateUserByEmailController.run.bind(updateUserByEmailController)
+  );
 
 export default userRouter;

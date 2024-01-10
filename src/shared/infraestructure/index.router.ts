@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
 
-import taskRouter from "./task/infraestructure/task.router";
-import userRouter from "./user/infraestructure/user.router";
-import authRouter from "./auth/infraestructure/auth.router";
+import taskRouter from "../../task/infraestructure/task.router";
+import userRouter from "../../user/infraestructure/user.router";
+import authRouter from "../../auth/infraestructure/auth.router";
 
 const prefijo = "/api";
 const indexRouter = Router();

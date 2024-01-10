@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { Response, Request, NextFunction } from "express";
 dotenv.config();
 
-export const verificarJWT = (
+export const verifyJwt = (
   req: Request,
   res: Response,
   next: NextFunction

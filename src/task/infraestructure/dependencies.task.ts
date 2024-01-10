@@ -1,5 +1,4 @@
-import { MySQLConnection } from "../../shared/mySql/application/mysqlConnection";
-import { tasksLocalData } from "../../localData/taskData";
+import { tasksLocalData } from "../../shared/domain";
 
 import { LocalDataRepository } from "../application/DbRepository/localData.repository";
 import { MySQLRepositoryTask } from "../application/DbRepository/mysql.repository";
@@ -19,12 +18,9 @@ import {
   PutTaskController,
 } from "./controllers";
 
-//Se inicializa db
-const dbConnection = new MySQLConnection();
-
 //Se inyecta dependencia (base de datos)
 const localDataRepository = new LocalDataRepository(tasksLocalData);
-const mysqlRepository = new MySQLRepositoryTask(dbConnection);
+const mysqlRepository = new MySQLRepositoryTask();
 
 //se inyecta la base de datos a los servicios
 const getTasksService = new GetTasksService(mysqlRepository);
