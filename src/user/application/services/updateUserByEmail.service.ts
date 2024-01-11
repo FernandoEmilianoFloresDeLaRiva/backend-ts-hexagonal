@@ -1,7 +1,7 @@
 import { User, UserResponse } from "../../domain/entities";
 import { UserRepository } from "../../domain/repository/userRepository";
-import bcrypt from "bcrypt";
 import { validatePartialUser } from "../../domain/validators/user.validator";
+import { createPasswordHash } from "../../../auth/application/utils";
 
 export class UpdateUserByEmailService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -11,14 +11,12 @@ export class UpdateUserByEmailService {
     if (resultValidation.success) {
       const originalUser = await this.userRepository.getUserByEmail(email);
       if (!originalUser) throw new Error("User not found");
-      console.log(originalUser);
-      const password = bcrypt.hashSync(user.password, 10);
+      const password = createPasswordHash(user.password);
       const newUser: User = {
         email: user.email,
         username: user.username,
         password,
       };
-      console.log(newUser);
       return await this.userRepository.updateUserByEmail(email, newUser);
     }
     throw new Error(resultValidation.error.message);

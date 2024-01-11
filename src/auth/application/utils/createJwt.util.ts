@@ -1,9 +1,5 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv"
-import { AuthResponse } from "../../domain/entities";
-
-dotenv.config()
-const JWTSECRET = process.env.JWTSECRET || "123455"
+import { SECRET_KEY_JWT } from "../../domain/constants/secretKeyJwt";
 
 export const createJwt = (user : any) => {
     console.log(user)
@@ -11,6 +7,6 @@ export const createJwt = (user : any) => {
         email : user.email,
     }
     console.log(payload)
-    const token = jwt.sign(payload, JWTSECRET, { expiresIn: "1h" });
+    const token = jwt.sign(payload, SECRET_KEY_JWT, { expiresIn: "1h" });
     return token;
 }
