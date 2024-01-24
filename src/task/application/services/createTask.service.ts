@@ -8,7 +8,9 @@ export class CreateTaskService {
     try {
       const resultValidation = validateTask(task);
       if (resultValidation.success) {
-        const response = await this.taskRepository.createTask(resultValidation.data);
+        const response = await this.taskRepository.createTask(
+          resultValidation.data
+        );
         return response;
       }
       //Se añade valor de validacion, por lo que no sera string

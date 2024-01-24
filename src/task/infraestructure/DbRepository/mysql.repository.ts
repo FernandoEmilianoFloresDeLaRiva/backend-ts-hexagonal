@@ -15,10 +15,10 @@ export class MySQLRepositoryTask implements TaskRepository {
     return db
       .execute(query, [taskId])
       .then((res: any) => {
-        console.log(res)
+        console.log(res);
         return res[0][0] as Task;
       })
-      .catch((err) => {
+      .catch((err: any) => {
         throw new Error(err);
       });
   }
@@ -30,7 +30,7 @@ export class MySQLRepositoryTask implements TaskRepository {
       .then(() => {
         return task;
       })
-      .catch((err) => {
+      .catch((err: any) => {
         throw new Error(err);
       });
   }

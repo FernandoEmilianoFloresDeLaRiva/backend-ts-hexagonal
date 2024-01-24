@@ -14,7 +14,7 @@ const taskSchema = z.object({
   description: z.string({
     invalid_type_error: "description must be a string",
     required_error: "description is required",
-  })
+  }),
 });
 
 export const validateTask = (task: Task) => {

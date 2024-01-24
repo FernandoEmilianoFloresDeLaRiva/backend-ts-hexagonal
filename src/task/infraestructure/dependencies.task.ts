@@ -1,7 +1,7 @@
 import { tasksLocalData } from "../../shared/domain";
 
-import { LocalDataRepository } from "../application/DbRepository/localData.repository";
-import { MySQLRepositoryTask } from "../application/DbRepository/mysql.repository";
+import { LocalDataRepository } from "./DbRepository/localData.repository";
+import { MySQLRepositoryTask } from "./DbRepository/mysql.repository";
 
 import {
   GetTasksService,

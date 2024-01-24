@@ -1,4 +1,4 @@
-import { MySqlRepositoryUser } from "../application/DbRepository/mysql.repository";
+import { MySqlRepositoryUser } from "./DbRepository/mysql.repository";
 import {
   DeleteUserByEmailService,
   GetAllUsersService,
