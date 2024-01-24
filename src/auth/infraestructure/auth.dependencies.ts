@@ -1,4 +1,4 @@
-import { MySqlRepositoryUser } from "../../user/application/DbRepository/mysql.repository";
+import { MySqlRepositoryUser } from "../../user/infraestructure/DbRepository/mysql.repository";
 import { LoginAuthService, RegisterAuthService } from "../application/services";
 import { LoginAuthController } from "./controllers/loginAuth.controller";
 import { RegisterAuthController } from "./controllers/registerAuth.controller";
@@ -6,7 +6,9 @@ import { RegisterAuthController } from "./controllers/registerAuth.controller";
 const mysqlRepository = new MySqlRepositoryUser();
 
 const loginAuthService = new LoginAuthService(mysqlRepository);
-const registerAuthService = new RegisterAuthService(mysqlRepository)
+const registerAuthService = new RegisterAuthService(mysqlRepository);
 
-export const loginAuthController = new LoginAuthController(loginAuthService)
-export const registerAuthController = new RegisterAuthController(registerAuthService)
+export const loginAuthController = new LoginAuthController(loginAuthService);
+export const registerAuthController = new RegisterAuthController(
+  registerAuthService
+);
