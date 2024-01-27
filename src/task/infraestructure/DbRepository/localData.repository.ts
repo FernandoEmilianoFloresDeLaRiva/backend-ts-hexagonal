@@ -23,10 +23,9 @@ export class LocalDataRepository implements TaskRepository {
   }
   async deleteTask(taskId: number): Promise<void> {
     this.tasksLocalData.filter((task) => task.idTask !== taskId);
-    return;
   }
   async updateTask(idTask: number, task: Task): Promise<Task> {
-    this.tasksLocalData.map((taskMap) => {
+    this.tasksLocalData.forEach((taskMap) => {
       if (taskMap.idTask === idTask) {
         taskMap.description = task.description;
         taskMap.title = task.title;

@@ -10,22 +10,26 @@ export class RegisterAuthService {
     try {
       const resultValidation = validateUser(user);
       if (resultValidation.success) {
-        const isUserCreated = await this.existingUser(resultValidation.data.email);
+        const isUserCreated = await this.existingUser(
+          resultValidation.data.email
+        );
         if (!isUserCreated) {
           const password = createPasswordHash(resultValidation.data.password);
           const newUser = {
             ...resultValidation.data,
             password,
           };
-          const responseUser : any = await this.userRepository.createUser(newUser);
-          const jwt = createJwt(responseUser)
+          const responseUser: any = await this.userRepository.createUser(
+            newUser
+          );
+          const jwt = createJwt(responseUser);
           const responseToke: AuthResponse = {
             token: jwt,
           };
           return responseToke;
         }
       }
-      throw "Could not create"
+      throw new Error("Could not create");
     } catch (err: any) {
       console.log(err);
       throw new Error(err);

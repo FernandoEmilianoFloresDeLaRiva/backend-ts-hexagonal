@@ -9,7 +9,7 @@ export class PutTaskService {
       const resultValidation = validatePartialTask(task);
       if (!resultValidation.success)
         throw new Error(resultValidation.error.message);
-      const originalTask = this.taskRepository.getTaskById(idTask);
+      const originalTask = await this.taskRepository.getTaskById(idTask);
       if (!(task.description && task.title && originalTask))
         throw new Error("Task not found");
       return await this.taskRepository.updateTask(idTask, task);

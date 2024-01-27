@@ -2,5 +2,5 @@ projectKey=backend-hexagonal-ts
 serverUrl=http://localhost:9000
 serverVersion=10.3.0.82913
 dashboardUrl=http://localhost:9000/dashboard?id=backend-hexagonal-ts
-ceTaskId=AY08sf2TpMLNo8gOIStd
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AY08sf2TpMLNo8gOIStd
+ceTaskId=AY1L56ZmXn35MKgeSSEs
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AY1L56ZmXn35MKgeSSEs
