@@ -2,7 +2,7 @@ import { User } from "../../../user/domain/entities";
 import { UserRepository } from "../../../user/domain/repository/userRepository";
 import { validateUser } from "../../../user/domain/validators/user.validator";
 import { AuthResponse } from "../../domain/entities";
-import { createPasswordHash, createJwt } from "../utils";
+import { createPasswordHash, createJwt } from "../../infraestructure/utils";
 
 export class RegisterAuthService {
   constructor(private readonly userRepository: UserRepository) {}

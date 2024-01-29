@@ -1,7 +1,7 @@
 import { User, UserResponse } from "../../domain/entities";
 import { UserRepository } from "../../domain/repository/userRepository";
 import { validatePartialUser } from "../../domain/validators/user.validator";
-import { createPasswordHash } from "../../../auth/application/utils";
+import { createPasswordHash } from "../../../auth/infraestructure/utils";
 
 export class UpdateUserByEmailService {
   constructor(private readonly userRepository: UserRepository) {}

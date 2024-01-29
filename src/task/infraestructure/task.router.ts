@@ -6,7 +6,7 @@ import {
   deleteTaskController,
   putTaskController,
 } from "./dependencies.task";
-import { verifyJwt } from "../../auth/application/middlewares/jwt.middleware";
+import { verifyJwt } from "../../auth/infraestructure/middlewares/jwt.middleware";
 
 const taskRouter = Router();
 

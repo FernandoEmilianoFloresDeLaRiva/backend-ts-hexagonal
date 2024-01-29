@@ -3,7 +3,7 @@ import { UserRepository } from "../../../user/domain/repository/userRepository";
 import { AuthResponse } from "../../domain/entities";
 import { validateAuth } from "../../domain/validators/auth.validator";
 import bcrypt from "bcrypt";
-import { createJwt } from "../utils/createJwt.util";
+import { createJwt } from "../../infraestructure/utils";
 
 export class LoginAuthService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -19,7 +19,7 @@ export class LoginAuthService {
         );
         if (isPasswordValid) {
           const jwt = createJwt(user);
-          console.log(jwt)
+          console.log(jwt);
           //Se crea el token y se envia;
           const responseToken: AuthResponse = {
             token: jwt,

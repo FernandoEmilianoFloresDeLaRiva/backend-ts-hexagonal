@@ -4,10 +4,12 @@ import {
   GetAllUsersService,
   GetUserByEmailService,
   UpdateUserByEmailService,
+  GetByIdService,
 } from "../application/services";
 import {
   DeleteUserByEmailController,
   GetAllUsersController,
+  GetByIdController,
   GetUserByEmailController,
   UpdateUserByEmailController,
 } from "./controllers";
@@ -18,6 +20,7 @@ const deleteUserByEmailService = new DeleteUserByEmailService(mysqlRepository);
 const getAllUsersService = new GetAllUsersService(mysqlRepository);
 const getUserByEmailService = new GetUserByEmailService(mysqlRepository);
 const updateUserByEmailService = new UpdateUserByEmailService(mysqlRepository);
+const getByIdService = new GetByIdService(mysqlRepository);
 
 export const deleteUserByEmailController = new DeleteUserByEmailController(
   deleteUserByEmailService
@@ -31,3 +34,4 @@ export const getUserByEmailController = new GetUserByEmailController(
 export const updateUserByEmailController = new UpdateUserByEmailController(
   updateUserByEmailService
 );
+export const getByIdController = new GetByIdController(getByIdService);

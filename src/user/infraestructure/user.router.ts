@@ -4,12 +4,14 @@ import {
   getAllUsersController,
   getUserByEmailController,
   updateUserByEmailController,
+  getByIdController,
 } from "./dependencies.user";
-import { verifyJwt } from "../../auth/application/middlewares/jwt.middleware";
+import { verifyJwt } from "../../auth/infraestructure/middlewares/jwt.middleware";
 
 const userRouter = Router();
 
 userRouter
+  .get("/:id", getByIdController.run.bind(getByIdController))
   .get("/", verifyJwt, getAllUsersController.run.bind(getAllUsersController))
   .get(
     "/:email",
