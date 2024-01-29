@@ -38,4 +38,4 @@ export const createTaskController = new CreateTaskController(createTaskService);
 export const deleteTaskController = new DeleteTaskController(
   deleteteTaskService
 );
-export const putTaskController = new PutTaskController(putTaskService)
+export const putTaskController = new PutTaskController(putTaskService);

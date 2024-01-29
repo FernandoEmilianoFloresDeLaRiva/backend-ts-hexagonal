@@ -6,7 +6,14 @@ import { db } from "./src/shared/application/mysqlConnection";
 const app = express();
 const PORT = "3000";
 
-app.use(cors());
+app.disable("x-powered-by");
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 app.use(express.json());
 
 app.use("/", indexRouter);
