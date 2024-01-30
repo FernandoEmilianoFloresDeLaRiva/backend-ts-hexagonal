@@ -24,9 +24,9 @@ export class MySqlRepositoryUser implements UserRepository {
     const { email, password, username } = user;
     const query =
       "insert into users (email, password, username) values (?,?,?)";
-    return db
-      .execute(query, [email, password, username])
-      .then((res: any) => res.values as User);
+    return db.execute(query, [email, password, username]).then((res: any) => {
+      return { email, password, username } as User;
+    });
   }
   deleteUserByEmail(email: string): Promise<void> {
     const query = "delete from users where email = ?";

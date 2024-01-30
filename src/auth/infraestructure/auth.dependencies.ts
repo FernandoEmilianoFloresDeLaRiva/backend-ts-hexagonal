@@ -2,11 +2,22 @@ import { MySqlRepositoryUser } from "../../user/infraestructure/DbRepository/mys
 import { LoginAuthService, RegisterAuthService } from "../application/services";
 import { LoginAuthController } from "./controllers/loginAuth.controller";
 import { RegisterAuthController } from "./controllers/registerAuth.controller";
+import { BcryptService, JwtService } from "./ports";
 
 const mysqlRepository = new MySqlRepositoryUser();
+const bcryptService = new BcryptService();
+const jwtService = new JwtService();
 
-const loginAuthService = new LoginAuthService(mysqlRepository);
-const registerAuthService = new RegisterAuthService(mysqlRepository);
+const loginAuthService = new LoginAuthService(
+  mysqlRepository,
+  jwtService,
+  bcryptService
+);
+const registerAuthService = new RegisterAuthService(
+  mysqlRepository,
+  jwtService,
+  bcryptService
+);
 
 export const loginAuthController = new LoginAuthController(loginAuthService);
 export const registerAuthController = new RegisterAuthController(

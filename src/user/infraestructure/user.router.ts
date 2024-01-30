@@ -5,27 +5,31 @@ import {
   getUserByEmailController,
   updateUserByEmailController,
   getByIdController,
+  jwtMiddleware,
 } from "./dependencies.user";
-import { verifyJwt } from "../../auth/infraestructure/middlewares/jwt.middleware";
 
 const userRouter = Router();
 
 userRouter
   .get("/:id", getByIdController.run.bind(getByIdController))
-  .get("/", verifyJwt, getAllUsersController.run.bind(getAllUsersController))
+  .get(
+    "/",
+    jwtMiddleware.run.bind(jwtMiddleware),
+    getAllUsersController.run.bind(getAllUsersController)
+  )
   .get(
     "/:email",
-    verifyJwt,
+    jwtMiddleware.run.bind(jwtMiddleware),
     getUserByEmailController.run.bind(getUserByEmailController)
   )
   .delete(
     "/:email",
-    verifyJwt,
+    jwtMiddleware.run.bind(jwtMiddleware),
     deleteUserByEmailController.run.bind(deleteUserByEmailController)
   )
   .put(
     "/:email",
-    verifyJwt,
+    jwtMiddleware.run.bind(jwtMiddleware),
     updateUserByEmailController.run.bind(updateUserByEmailController)
   );
 

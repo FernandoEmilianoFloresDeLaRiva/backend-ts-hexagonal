@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-export const BCYPT_SPACE = process.env.SALTOS || "10"
+export const BCYPT_SPACE = parseInt(process.env.SALTOS ?? "10");
