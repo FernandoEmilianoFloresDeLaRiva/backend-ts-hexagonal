@@ -1,4 +1,4 @@
-import { tasksLocalData } from "../../shared/domain";
+import { tasksLocalData } from "../../shared/domain/jsonData/taskData.json";
 
 import { LocalDataRepository } from "./DbRepository/localData.repository";
 import { MySQLRepositoryTask } from "./DbRepository/mysql.repository";
