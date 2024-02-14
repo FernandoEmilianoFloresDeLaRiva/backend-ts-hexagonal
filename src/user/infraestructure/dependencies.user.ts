@@ -14,22 +14,38 @@ import {
   UpdateUserByEmailController,
 } from "./controllers";
 import { JwtMiddleware } from "../../auth/application/middlewares";
-import { BcryptService, JwtService } from "../../auth/infraestructure/ports";
+import { BcryptPort, JwtPort } from "../../auth/infraestructure/ports";
+import { CreatePasswordService } from "../../auth/application/services";
+import { AmqpLibPort } from "../../shared/infraestructure/ports/AmqpLib";
+import {
+  ConsumeChannelService,
+  SendMessageService,
+} from "../../shared/application/broker/services";
 
 const mysqlRepository = new MySqlRepositoryUser();
-const jwtService = new JwtService();
-const bcryptService = new BcryptService();
+const jwtPort = new JwtPort();
+const bcryptService = new BcryptPort();
+const amqpLibPort = new AmqpLibPort("amqp://localhost");
+
+const consumeChannelService = new ConsumeChannelService(amqpLibPort);
+const sendMessageService = new SendMessageService(amqpLibPort);
+const createPasswordService = new CreatePasswordService(
+  bcryptService,
+  consumeChannelService,
+  sendMessageService
+);
 
 const deleteUserByEmailService = new DeleteUserByEmailService(mysqlRepository);
 const getAllUsersService = new GetAllUsersService(mysqlRepository);
 const getUserByEmailService = new GetUserByEmailService(mysqlRepository);
 const updateUserByEmailService = new UpdateUserByEmailService(
   mysqlRepository,
-  bcryptService
+  sendMessageService,
+  consumeChannelService
 );
 const getByIdService = new GetByIdService(mysqlRepository);
 
-export const jwtMiddleware = new JwtMiddleware(jwtService);
+export const jwtMiddleware = new JwtMiddleware(jwtPort);
 
 export const deleteUserByEmailController = new DeleteUserByEmailController(
   deleteUserByEmailService

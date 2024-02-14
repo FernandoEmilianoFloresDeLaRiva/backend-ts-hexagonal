@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import indexRouter from "./src/shared/infraestructure/index.router";
-import { db } from "./src/shared/application/mysqlConnection";
+import { db } from "./src/shared/infraestructure/ports/mysqlConnection";
 
 const app = express();
 const PORT = "3000";

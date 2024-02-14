@@ -1,3 +1,3 @@
-import { AuthResponse } from "../../../../auth/domain/entities";
+import { UserResponse } from "../../../../user/domain/entities";
 
-export interface QueueResponse extends AuthResponse {}
+export type QueueResponse = string | UserResponse;

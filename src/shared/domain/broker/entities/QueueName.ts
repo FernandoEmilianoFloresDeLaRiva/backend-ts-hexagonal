@@ -1,3 +1,4 @@
 export enum QueueName {
-  AUTH = "auth",
+  CREATE_USER = "create_user",
+  ENCODE = "encode"
 }

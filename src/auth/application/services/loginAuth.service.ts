@@ -6,12 +6,13 @@ import {
   TokenRepository,
 } from "../../domain/repository";
 import { validateAuth } from "../../domain/validators/auth.validator";
+import { CompareCredentialsService } from "./compareCredentials.service";
 
 export class LoginAuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly tokenRepository: TokenRepository,
-    private readonly passwordHashRepository: PasswordHashRepository
+    private readonly compareCredentials: CompareCredentialsService
   ) {}
   async run(user: User): Promise<AuthResponse> {
     try {
@@ -19,7 +20,7 @@ export class LoginAuthService {
       if (resultValidation.success) {
         const response = await this.userRepository.getUserByEmail(user.email);
         //se checan credenciales
-        const isPasswordValid = this.passwordHashRepository.compareCredentials(
+        const isPasswordValid = await this.compareCredentials.run(
           user,
           response.password
         );

@@ -1,6 +1,5 @@
-import { User } from "../../../user/domain/entities";
 
 export interface PasswordHashRepository {
-  createPasswordHash(password: string): string;
-  compareCredentials(user: User, passwordRequest: string): boolean;
+  createPasswordHash(password: string, spaceBcrypt : number): string;
+  compareCredentials(originalPassword : string, passwordRequest: string): boolean;
 }

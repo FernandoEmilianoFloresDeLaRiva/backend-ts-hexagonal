@@ -1,4 +1,4 @@
-import { db } from "../../../shared/application/mysqlConnection";
+import { db } from "../../../shared/infraestructure/ports/mysqlConnection";;
 import { Task } from "../../domain/entities";
 import { TaskRepository } from "../../domain/repository/taskRepository";
 

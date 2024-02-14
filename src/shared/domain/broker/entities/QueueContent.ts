@@ -1,4 +1,3 @@
-import { AuthRequest } from "../../../../auth/domain/entities";
+import { User } from "../../../../user/domain/entities";
 
-export interface QueueContent extends AuthRequest{
-}
+export type QueueContent = User | string;

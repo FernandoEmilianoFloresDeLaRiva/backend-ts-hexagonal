@@ -1,4 +1,4 @@
-import { db } from "../../../shared/application/mysqlConnection";
+import { db } from "../../../shared/infraestructure/ports/mysqlConnection";
 import { User } from "../../domain/entities";
 import { UserRepository } from "../../domain/repository/userRepository";
 
@@ -12,7 +12,6 @@ export class MySqlRepositoryUser implements UserRepository {
   getUserByEmail(email: string): Promise<User> {
     const query = "select * from users where email = ?";
     return db.execute(query, [email]).then((res: any) => {
-      console.log(res[0]);
       return res[0][0] as User;
     });
   }

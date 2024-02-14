@@ -1,9 +1,9 @@
-import { QueueName, QueueRequest, QueueContent } from "../entities";
+import { QueueName, QueueRequest, QueueResponse } from "../entities";
 
 export interface QueueRepository {
-  sendMessageToChannel(req: QueueRequest): void;
-  consumeChannel(
-    queueName: QueueName,
-    nextCall: (data: QueueContent) => {}
-  ): void;
+  connectionBroker(): Promise<any>;
+  createChannel(): Promise<any>;
+  sendMessageToChannel(req: QueueRequest): Promise<void>;
+  deleteMessage(queueName: QueueName, data: any): Promise<void>;
+  consumeChannel(queueName: QueueName): Promise<QueueResponse>;
 }

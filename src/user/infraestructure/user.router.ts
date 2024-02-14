@@ -14,7 +14,7 @@ userRouter
   .get("/:id", getByIdController.run.bind(getByIdController))
   .get(
     "/",
-    jwtMiddleware.run.bind(jwtMiddleware),
+    // jwtMiddleware.run.bind(jwtMiddleware),
     getAllUsersController.run.bind(getAllUsersController)
   )
   .get(
@@ -29,7 +29,7 @@ userRouter
   )
   .put(
     "/:email",
-    jwtMiddleware.run.bind(jwtMiddleware),
+    // jwtMiddleware.run.bind(jwtMiddleware),
     updateUserByEmailController.run.bind(updateUserByEmailController)
   );
 

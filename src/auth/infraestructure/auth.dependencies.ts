@@ -1,22 +1,46 @@
+import {
+  ConsumeChannelService,
+  SendMessageService,
+} from "../../shared/application/broker/services";
+import { AmqpLibPort } from "../../shared/infraestructure/ports/AmqpLib";
 import { MySqlRepositoryUser } from "../../user/infraestructure/DbRepository/mysql.repository";
-import { LoginAuthService, RegisterAuthService } from "../application/services";
+import {
+  CreateTokenService,
+  LoginAuthService,
+  RegisterAuthService,
+  CompareCredentialsService,
+  CreatePasswordService,
+} from "../application/services";
 import { LoginAuthController } from "./controllers/loginAuth.controller";
 import { RegisterAuthController } from "./controllers/registerAuth.controller";
-import { BcryptService, JwtService } from "./ports";
+import { BcryptPort, JwtPort } from "./ports";
 
 const mysqlRepository = new MySqlRepositoryUser();
-const bcryptService = new BcryptService();
-const jwtService = new JwtService();
+const bcryptPort = new BcryptPort();
+const jwtPort = new JwtPort();
+const amqpLibPort = new AmqpLibPort("amqp://localhost");
+
+const consumeChannelService = new ConsumeChannelService(amqpLibPort);
+const sendMessageService = new SendMessageService(amqpLibPort);
+const createPassword = new CreatePasswordService(
+  bcryptPort,
+  consumeChannelService,
+  sendMessageService
+);
+const compareCredentials = new CompareCredentialsService(bcryptPort);
+const createToken = new CreateTokenService(jwtPort);
 
 const loginAuthService = new LoginAuthService(
   mysqlRepository,
-  jwtService,
-  bcryptService
+  jwtPort,
+  compareCredentials
 );
 const registerAuthService = new RegisterAuthService(
   mysqlRepository,
-  jwtService,
-  bcryptService
+  createToken,
+  createPassword,
+  consumeChannelService,
+  sendMessageService
 );
 
 export const loginAuthController = new LoginAuthController(loginAuthService);

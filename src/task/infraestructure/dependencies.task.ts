@@ -18,14 +18,14 @@ import {
   PutTaskController,
 } from "./controllers";
 import { JwtMiddleware } from "../../auth/application/middlewares";
-import { JwtService } from "../../auth/infraestructure/ports";
+import { JwtPort } from "../../auth/infraestructure/ports";
 
 //Se inyecta dependencia (base de datos)
 const localDataRepository = new LocalDataRepository(tasksLocalData);
 const mysqlRepository = new MySQLRepositoryTask();
 
 //Se inyecta servicio jwt
-const jwtService = new JwtService();
+const jwtPort = new JwtPort();
 
 //se inyecta la base de datos a los servicios
 const getTasksService = new GetTasksService(mysqlRepository);
@@ -35,7 +35,7 @@ const deleteteTaskService = new DeleteTaskService(localDataRepository);
 const putTaskService = new PutTaskService(localDataRepository);
 
 //se inyecta jwtMiddleware
-export const jwtMiddleware = new JwtMiddleware(jwtService);
+export const jwtMiddleware = new JwtMiddleware(jwtPort);
 
 //controlla a traves del servicio dado
 export const getTasksController = new GetTasksController(getTasksService);
